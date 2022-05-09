@@ -20,6 +20,12 @@
   <!-- <button @click="setUser2Age(88888)">点击修改状态</button> -->
   <!-- 如果还需要事件对象，需要传入$event -->
   <button @click="setUser2Age(88888,$event)">点击修改状态</button>
+
+  <!-- 计算属性 -->
+  <h1>{{reMsg}}</h1>
+  <h1>{{reMsg}}</h1>
+  <h1>{{reMsg}}</h1>
+  <button @click="setReMsg">修改计算属性reMsg</button>
   <!-- <img
     alt="Vue logo"
     src="./assets/logo.png"
@@ -31,7 +37,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import HelloWorld from './components/HelloWorld.vue'
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 
 /**
  * 这样写不是响应式
@@ -54,6 +60,8 @@ let userInfo = reactive({
 function revseMsg(val) {
   /**
    * 转成数组 ---》 数组颠倒的方法 ---》转成字符串
+   * 
+   *  方法调用几次触发几次
    */
   return val.split('').reverse().join('')
 }
@@ -92,6 +100,41 @@ function setUser2Age(num, event) {
   user2.age = num
   console.log(event, '---evernt');
 }
+
+
+/**
+ * 计算属性
+ * 
+ * 有缓存作用，相同变量，只会执行一次
+ * 
+ * 提高性能
+ */
+// const reMsg = computed(function () {
+//   console.log(123);
+//   return msg.value.split('').reverse().join('')
+// })
+// const reMsg = computed(() => {
+//   console.log(123);
+//   return msg.value.split('').reverse().join('')
+// })
+
+const reMsg = computed({
+  get: () => {
+    // 赋值
+    console.log(567);
+    return msg.value.split('').reverse().join('')
+  },
+  set: (value) => {
+    // 设置值
+    msg.value = value.split('').reverse().join('')
+  }
+})
+
+function setReMsg() {
+  reMsg.value = "出差一点也不好玩！！！"
+  console.log(reMsg.value, '---reMsg');
+}
+
 </script>
 
 <style>

@@ -104,3 +104,40 @@ function setUser2Age() {
 }
 ```
 
+### 计算属性
+
+```js
+/**
+ * 计算属性
+ * 
+ * 有缓存作用，相同变量，只会执行一次
+ * 
+ * 提高性能
+ */
+// const reMsg = computed(function () {
+//   console.log(123);
+//   return msg.value.split('').reverse().join('')
+// })
+// const reMsg = computed(() => {
+//   console.log(123);
+//   return msg.value.split('').reverse().join('')
+// })
+
+const reMsg = computed({
+  get: () => {
+    // 赋值
+    console.log(567);
+    return msg.value.split('').reverse().join('')
+  },
+  set: (value) => {
+    // 设置值
+    msg.value = value.split('').reverse().join('')
+  }
+})
+
+function setReMsg() {
+  reMsg.value = "出差一点也不好玩！！！"
+  console.log(reMsg.value, '---reMsg');
+}
+```
+
