@@ -17,7 +17,9 @@
 
   <!-- 不用reactive，用ref对象直接赋值 -->
   <h1>年龄：{{user2.age}}</h1>
-  <button @click="setUser2Age">点击修改状态</button>
+  <!-- <button @click="setUser2Age(88888)">点击修改状态</button> -->
+  <!-- 如果还需要事件对象，需要传入$event -->
+  <button @click="setUser2Age(88888,$event)">点击修改状态</button>
   <!-- <img
     alt="Vue logo"
     src="./assets/logo.png"
@@ -83,8 +85,12 @@ function setUserInfoState() {
  * 用ref对象直接赋值
  */
 let user2 = reactive(user.value) // 解包
-function setUser2Age() {
-  user2.age = 24
+// function setUser2Age(event) {
+// console.log(evernt, '---event');
+function setUser2Age(num, event) {
+  // user2.age = 24
+  user2.age = num
+  console.log(event, '---evernt');
 }
 </script>
 
