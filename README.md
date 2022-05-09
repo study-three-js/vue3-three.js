@@ -71,3 +71,36 @@ function setMsg() {
 
 #### 对象、数组类型用`reactive`
 
+```js
+/**
+ * 创建响应式对象
+ */
+let user = ref({
+  username: 'L',
+  age: 18,
+})
+let userInfo = reactive({
+  username: 'L',
+  state: '看电影',
+})
+
+function setUserAge() {
+  // user.age = 22 //user.age = 22,但是视图没变
+  user.value.age = 22
+  console.log(user, user.age);
+}
+
+function setUserInfoState() {
+  userInfo.state = '睡觉'
+}
+
+/**
+ * 不用reactive
+ * 用ref对象直接赋值
+ */
+let user2 = reactive(user.value) // 解包
+function setUser2Age() {
+  user2.age = 24
+}
+```
+

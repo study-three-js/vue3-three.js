@@ -14,10 +14,14 @@
 
   <h1>状态：{{userInfo.state}}</h1>
   <button @click="setUserInfoState">点击修改状态</button>
-  <img
+
+  <!-- 不用reactive，用ref对象直接赋值 -->
+  <h1>年龄：{{user2.age}}</h1>
+  <button @click="setUser2Age">点击修改状态</button>
+  <!-- <img
     alt="Vue logo"
     src="./assets/logo.png"
-  />
+  /> -->
   <HelloWorld msg="Hello Vue 3 + Vite" />
 </template>
 
@@ -31,12 +35,15 @@ import { ref, reactive } from 'vue'
  * 这样写不是响应式
  */
 // let msg = '2022/5/6'
-let msg = ref('2022/5/6'); //创建响应式对象
+let msg = ref('2022/5/6'); //创建响应式数据
+
+/**
+ * 创建响应式对象
+ */
 let user = ref({
   username: 'L',
   age: 18,
 })
-
 let userInfo = reactive({
   username: 'L',
   state: '看电影',
@@ -69,6 +76,15 @@ function setUserAge() {
 
 function setUserInfoState() {
   userInfo.state = '睡觉'
+}
+
+/**
+ * 不用reactive
+ * 用ref对象直接赋值
+ */
+let user2 = reactive(user.value) // 解包
+function setUser2Age() {
+  user2.age = 24
 }
 </script>
 
