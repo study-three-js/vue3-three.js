@@ -30,6 +30,10 @@
     alt="Vue logo"
     src="./assets/logo.png"
   /> -->
+
+  <!-- 监听数据 -->
+  <h1>{{userInfo.username}}</h1>
+  <button @click="userInfo.username = '1'">修改监听数据username</button>
   <HelloWorld msg="Hello Vue 3 + Vite" />
 </template>
 
@@ -37,7 +41,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import HelloWorld from './components/HelloWorld.vue'
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, watch } from 'vue'
 
 /**
  * 这样写不是响应式
@@ -135,6 +139,19 @@ function setReMsg() {
   console.log(reMsg.value, '---reMsg');
 }
 
+
+/**
+ * 监听数据变化
+ */
+watch(msg, (newValue, oldValue) => { //监听状态
+  console.log(newValue, '----newValue');
+  console.log(oldValue, '----oldValue');
+})
+
+watch(() => userInfo.username, (newVal, oldVal) => { //监听对象
+  console.log(newVal, '----newVal');
+  console.log(oldVal, '----oldVal');
+})
 </script>
 
 <style>
