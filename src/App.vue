@@ -35,6 +35,35 @@
   <h1>{{userInfo.username}}</h1>
   <button @click="userInfo.username = '1'">修改监听数据username</button>
   <HelloWorld msg="Hello Vue 3 + Vite" />
+
+  <!-- 常见指令与样式 -->
+  <!-- v-bind 数据绑定 -->
+  <!-- <h1 v-bind:class="className"></h1> -->
+  <h1
+    :class="className"
+    :title="desc"
+  ></h1>
+  <!-- 富文本解析还是v-html -->
+  <div
+    class="content"
+    v-html="html"
+  ></div>
+  <!-- v-on 事件监听 -->
+  <!-- <div v-on:click="count++">{{count}}</div> -->
+  <div @click="count++">{{count}}</div>
+  <!-- class切换颜色 -->
+  <h1
+    :class="{box:true,bgRed:toggle}"
+    :title="desc"
+    @click="toggle = !toggle"
+  ></h1>
+  <!--     :class="['box','bgRed']" -->
+  <h1
+    :class="['box']"
+    :title="desc"
+  ></h1>
+  <h1 :style="h1Style"></h1>
+
 </template>
 
 <script setup>
@@ -62,6 +91,22 @@ let user = ref({
 let userInfo = reactive({
   username: 'L',
   state: '看电影',
+})
+
+/**
+ * 创建动态的class/属性/事件中的属性
+ */
+let className = ref('box bgRed')
+let desc = ref('这是一个box')
+let html = ref('<h2>这是html的内容</h2>')
+let count = ref(0)
+let toggle = ref(true)
+let h1Style = reactive({
+  // background: 'skyblue',
+  backgroundColor: 'skyblue',
+  width: '200px',
+  height: '200px',
+  'border-bottom': '20px solid #ccc'
 })
 
 function revseMsg(val) {
@@ -170,5 +215,14 @@ watch([msg, () => userInfo.state, () => userInfo.username], (newVal, oldVal) => 
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: purple;
+}
+.bgRed {
+  background-color: red;
 }
 </style>
