@@ -44,6 +44,9 @@ import HelloWorld from './components/HelloWorld.vue'
 import { ref, reactive, computed, watch } from 'vue'
 
 /**
+ * 定义变量用let 或者 var
+ */
+/**
  * 这样写不是响应式
  */
 // let msg = '2022/5/6'
@@ -149,6 +152,11 @@ watch(msg, (newValue, oldValue) => { //监听状态
 })
 
 watch(() => userInfo.username, (newVal, oldVal) => { //监听对象
+  console.log(newVal, '----newVal');
+  console.log(oldVal, '----oldVal');
+})
+// 监听多个数据变化
+watch([msg, () => userInfo.state, () => userInfo.username], (newVal, oldVal) => { //监听对象
   console.log(newVal, '----newVal');
   console.log(oldVal, '----oldVal');
 })

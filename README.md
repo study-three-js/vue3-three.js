@@ -140,4 +140,27 @@ function setReMsg() {
   console.log(reMsg.value, '---reMsg');
 }
 ```
+### 监听数据变化
+```js
+import { watch } from 'vue'
 
+
+/**
+ * 监听数据变化
+ */
+watch(msg, (newValue, oldValue) => { //监听状态
+  console.log(newValue, '----newValue');
+  console.log(oldValue, '----oldValue');
+})
+watch(() => userInfo.username, (newVal, oldVal) => { //监听对象
+  console.log(newVal, '----newVal');
+  console.log(oldVal, '----oldVal');
+})
+// 监听多个数据变化
+watch([msg, () => userInfo.state, () => userInfo.username], (newVal, oldVal) => { //监听对象
+  console.log(newVal, '----newVal');
+  console.log(oldVal, '----oldVal');
+})
+
+
+```
