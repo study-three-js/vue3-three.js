@@ -164,3 +164,39 @@ watch([msg, () => userInfo.state, () => userInfo.username], (newVal, oldVal) => 
 
 
 ```
+
+### Vue 3 父子传参
+```vue
+<template>
+  <h1>
+    <!-- <span>{{ num }}</span>
+    <span>------</span>
+    <span>{{ title }}</span> -->
+
+    <!-- 可以直接使用，但是规范还是用props -->
+    <span>{{ props.num }}</span>
+    <span>------</span>
+    <span>{{ props.title }}</span>
+
+    <span>{{ props.artice && props.artice.num }}</span>
+    <span>------</span>
+    <span>{{ props.artice && props.artice.title }}</span>
+  </h1>
+</template>
+
+<script setup>
+import { ref, defineProps } from 'vue'
+// let num = ref(1);
+// let title = ref('今天是个好日子');
+/**
+ * 定义Props接受属性
+ */
+const props = defineProps({
+  num: Number,// 设置类型
+  title: String,
+  artice: Object,
+})
+</script>
+<style lang='less' scoped>
+</style>
+```
