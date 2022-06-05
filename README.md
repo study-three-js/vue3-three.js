@@ -200,3 +200,55 @@ const props = defineProps({
 <style lang='less' scoped>
 </style>
 ```
+
+#### 子向父传参
+> 子组件代码
+
+```vue
+<template>
+  <h1 @click="sendRead">
+  ````
+  ````
+  ```
+  </h1>
+</template>
+
+<script setup>
+import { defineEmits } from 'vue'
+/**
+ * 子组件向父组件传参(设置自定义事件)
+ */
+const emit = defineEmits(['finishRead', 'reading'])
+function sendRead() {
+  // emit('finishRead');
+  emit('finishRead', '[已经阅读]');
+}
+</script>
+```
+> 父组件接收代码
+
+```vue
+<template>
+ <!-- <ListItemVue v-for="(item, index) in articeList" :key="index" :num="item.num" :title="item.title"
+    @finish-read="changeTitle(index)"></ListItemVue> -->
+
+  <!-- 子组件如果和父组件的参数一起穿的时候，子组件的参数则写为$event,这个叫事件数据 -->
+  <ListItemVue v-for="(item, index) in articeList" :key="index" :num="item.num" :title="item.title"
+    @finish-read="changeTitle(index, $event)"></ListItemVue>
+</template>
+
+<script setup>
+// function changeTitle(index) {
+function changeTitle(index, $event) {
+  // articeList[index].title += "[已阅]"
+
+  //$event为事件数据
+  // articeList[index].title += $event
+
+  //判断一下 只是第一次的时候添加
+  if (articeList[index].title.indexOf($event) == -1) {
+    articeList[index].title += $event
+  }
+}
+</script>
+```

@@ -4,10 +4,10 @@
  * @Author: Lp
  * @Date: 2022-06-04 10:48:33
  * @LastEditors: Lp
- * @LastEditTime: 2022-06-04 12:27:22
+ * @LastEditTime: 2022-06-05 10:43:19
 -->
 <template>
-  <h1>
+  <h1 @click="sendRead">
     <!-- <span>{{ num }}</span>
     <span>------</span>
     <span>{{ title }}</span> -->
@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps } from 'vue'
+import { ref, defineProps, defineEmits } from 'vue'
 // let num = ref(1);
 // let title = ref('今天是个好日子');
 /**
@@ -35,6 +35,15 @@ const props = defineProps({
   title: String,
   artice: Object,
 })
+
+/**
+ * 子组件向父组件传参(设置自定义事件)
+ */
+const emit = defineEmits(['finishRead', 'reading'])
+function sendRead() {
+  // emit('finishRead');
+  emit('finishRead', '[已经阅读]');
+}
 </script>
 <style lang='less' scoped>
 </style>
