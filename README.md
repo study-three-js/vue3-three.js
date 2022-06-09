@@ -387,7 +387,7 @@ import router from './router'
 //拆开写
 let app = createApp(App)
 // app.mount('#app')
-// 7. 使用路由
+// 7. 安装路由
 app.use(router)
 app.mount('#app')
 ```

@@ -4,6 +4,8 @@
     <router-link to="/about">跳转至about</router-link>
     <button @click="router.push('/')">跳转至首页</button>
     <button @click="goAbout">跳转到about</button>
+    <router-link to="/buycart">跳转至购物车</router-link>
+    <router-link to="/product/123">跳转至产品</router-link>
   </div>
   <!-- 跟 Vue2 一样根据不同路径显示的不同的界面 -->
   <router-view></router-view>
