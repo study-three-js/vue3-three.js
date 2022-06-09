@@ -296,7 +296,7 @@ function sendRead() {
 </style>
 ```
 
-## Vue3路由
+## Vue 3路由
 ### 安装路由
 ```shell
 npm install vue-router@4
@@ -419,7 +419,7 @@ function goAbout() {
 </style>
 
 ```
-
+## Vue 3 状态管理
 ### 安装 Vuex
 ```shell
 npm install vuex@next --save
