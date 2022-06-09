@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Lp
- * @Date: 2022-06-04 10:26:48
- * @LastEditors: Lp
- * @LastEditTime: 2022-06-05 10:52:55
--->
 <template>
   <h1>{{ msg }}</h1>
   <!-- 父子传参 props = property -->

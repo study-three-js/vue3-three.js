@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Lp
- * @Date: 2022-06-04 10:48:33
- * @LastEditors: Lp
- * @LastEditTime: 2022-06-09 19:58:55
--->
 <template>
   <h1 @click="sendRead">
     <!-- <span>{{ num }}</span>
