@@ -203,9 +203,7 @@ const props = defineProps({
 <style lang='less' scoped>
 </style>
 ```
-<a name="dHdha"></a>
-#### 
-<a name="YLyl8"></a>
+
 #### 子向父传参
 > 子组件代码
 
@@ -261,7 +259,6 @@ function changeTitle(index, $event) {
 }
 </script>
 ```
-<a name="xKcmG"></a>
 #### 去掉Eslint 警告
 ![image.png]("C:\Users\L\Downloads\image.png")
 
@@ -300,12 +297,10 @@ function sendRead() {
 ```
 
 ## Vue3路由
-<a name="APbRo"></a>
 ### 安装路由
 ```shell
 npm install vue-router@4
 ```
-<a name="DjTBx"></a>
 ### 创建router文件夹里面新建index.js
 ```javascript
 // 1.导入路由
@@ -360,7 +355,6 @@ export default router
 > 
 > hash模式下，前端路由修改的是#号中的信息，对后端完全没有影响，因此改变hash也不会重新加载整个页面。如果修改不存在的#abc页面，页面也不会跳转，history模式则刚好相反，没有对应的页面就会出现404。
 
-<a name="F7MAf"></a>
 ##### history模式
 > URL中没有"#"号。
 > 例:[http://localhost:8080/login](http://localhost:8080/login)
@@ -369,12 +363,10 @@ export default router
 > 
 > history模式下，操作中不怕前进和后退，不带#号。它的缺点是害怕刷新页面，如果没有服务器端的支持，刷新之后就会请求服务器，由于找不到相应的支持响应或者资源，就会报错404页面。
 
-<a name="WqLdF"></a>
 #### 浏览器报错 ---Vue Router4特有的
 > vue-router.esm-bundler.js:3308 Error: Invalid route component
 
 **如果在配置路由当中的path有为空的把斜杠‘/’去掉，换成空字符**
-<a name="KGF2c"></a>
 ### 在main.js中去引入router下的文件
 ```javascript
 import { createApp } from 'vue'
@@ -391,7 +383,6 @@ let app = createApp(App)
 app.use(router)
 app.mount('#app')
 ```
-<a name="Fg2XY"></a>
 ### 在App.vue中去使用路由
 > 需要配合 `router-link` 和 `router-view`组件 
 > 
@@ -427,4 +418,98 @@ function goAbout() {
 ...
 </style>
 
+```
+
+### 安装 Vuex
+```shell
+npm install vuex@next --save
+```
+### 创建store文件夹里面新建index.js
+```javascript
+/**
+ * Vuex4.0 以前都是Vue2的，以后才是Vue3的
+ */
+
+// 1.导入Vuex
+import { createStore } from 'vuex'
+
+// 2.创建一个新的 store 实例
+const store = createStore({
+  state() {
+    return {
+      count: 0,
+    }
+  },
+  // 计算属性  获取一个新的值
+  getters: {
+    totalPrice(state) {
+      return state.count * 98.8;
+    },
+  },
+  // 同步修改状态的方法
+  mutations: {
+    increment(state, payload) {
+      // payload 是传过来的参数
+      state.count += payload;
+    },
+  },
+  // 异步修改状态的方法（调接口的时候）
+  actions: {
+    asyncAdd(store, payload) {
+      // payload 是传过来的参数
+      setTimeout(() => {
+        // store.commit('increment', 10)
+        store.commit('increment', payload)
+      }, 1000)
+    },
+  },
+})
+
+// 3.导出store
+export default store;
+```
+### 在main.js中去引入store下的文件
+```javascript
+import { createApp } from 'vue'
+import App from './App.vue'
+
+// 6.导入路由
+import router from './router'
+// 4.导入Vuex
+import store from './store'
+
+// createApp(App).mount('#app')
+//拆开写
+let app = createApp(App)
+// app.mount('#app')
+// 7. 安装路由
+app.use(router)
+// 5. 安装Vuex
+app.use(store)
+app.mount('#app')
+```
+### 在App.vue中去使用Vuex
+```vue
+<template>
+  ...
+</template>
+
+<script setup>
+import { useStore } from "vuex"
+
+let store = useStore()
+
+function addProduct() {
+  // 同步是commit
+  store.commit('increment', 2)
+}
+
+function asyncAddProduct() {
+  // 异步是dispatch
+  // store.dispatch('asyncAdd') //默认 + 10
+  store.dispatch('asyncAdd', 5)
+}
+</script>
+<style lang='less' scoped>
+</style>
 ```
