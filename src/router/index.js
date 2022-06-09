@@ -24,6 +24,11 @@ import Buycart from '../views/Buycart.vue'
  */
 const routes = [
   // { path: '/', components: Home, name: 'home', },
+  /**
+   * Vue Router4 报错Error: Invalid route component
+   * 
+   * 解决方法：如果在配置路由当中的path有为空的把斜杠'/'去掉，换成空字符
+   */
   { path: '', component: Home, name: 'home', },
   { path: '/about', component: About, name: 'about', },
   { path: '/buycart', component: Buycart, name: 'buycart', },
