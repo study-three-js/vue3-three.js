@@ -166,6 +166,9 @@ watch([msg, () => userInfo.state, () => userInfo.username], (newVal, oldVal) => 
 ```
 
 ### Vue 3 父子传参
+#### 父向子传参
+> 子组件代码，父组件和Vue2一样
+
 ```vue
 <template>
   <h1>
@@ -200,16 +203,17 @@ const props = defineProps({
 <style lang='less' scoped>
 </style>
 ```
-
+<a name="dHdha"></a>
+#### 
+<a name="YLyl8"></a>
 #### 子向父传参
 > 子组件代码
 
 ```vue
 <template>
   <h1 @click="sendRead">
-  ````
-  ````
-  ```
+  ...
+  ...
   </h1>
 </template>
 
@@ -233,12 +237,12 @@ function sendRead() {
     @finish-read="changeTitle(index)"></ListItemVue> -->
 
   <!-- 子组件如果和父组件的参数一起穿的时候，子组件的参数则写为$event,这个叫事件数据 -->
-  <ListItemVue 
-    v-for="(item, index) in articeList" 
-    :key="index" 
-    :num="item.num" 
-    :title="item.title"
-    @finish-read="changeTitle(index, $event)">
+    <ListItemVue 
+      v-for="(item, index) in articeList" 
+      :key="index" 
+      :num="item.num" 
+      :title="item.title"
+      @finish-read="changeTitle(index, $event)">
   </ListItemVue>
 </template>
 
@@ -257,13 +261,14 @@ function changeTitle(index, $event) {
 }
 </script>
 ```
-
+<a name="xKcmG"></a>
 #### 去掉Eslint 警告
 ![image.png](https://cdn.nlark.com/yuque/0/2022/png/1843937/1654775764324-8981ab5a-3fec-4224-af17-dfd9553ae008.png#clientId=ub78965e2-a840-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=166&id=u162dc1bf&margin=%5Bobject%20Object%5D&name=image.png&originHeight=249&originWidth=1509&originalType=binary&ratio=1&rotation=0&showTitle=false&size=31410&status=done&style=none&taskId=u3abd9b65-f059-4c1c-b8bf-8272d5bdac4&title=&width=1006)
+
 ```vue
 <template>
-  ```
-  ```
+  ...
+  ...
 </template>
 
 <script setup>
