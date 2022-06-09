@@ -233,8 +233,13 @@ function sendRead() {
     @finish-read="changeTitle(index)"></ListItemVue> -->
 
   <!-- 子组件如果和父组件的参数一起穿的时候，子组件的参数则写为$event,这个叫事件数据 -->
-  <ListItemVue v-for="(item, index) in articeList" :key="index" :num="item.num" :title="item.title"
-    @finish-read="changeTitle(index, $event)"></ListItemVue>
+  <ListItemVue 
+    v-for="(item, index) in articeList" 
+    :key="index" 
+    :num="item.num" 
+    :title="item.title"
+    @finish-read="changeTitle(index, $event)">
+  </ListItemVue>
 </template>
 
 <script setup>
@@ -251,4 +256,40 @@ function changeTitle(index, $event) {
   }
 }
 </script>
+```
+
+#### 去掉Eslint 警告
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/1843937/1654775764324-8981ab5a-3fec-4224-af17-dfd9553ae008.png#clientId=ub78965e2-a840-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=166&id=u162dc1bf&margin=%5Bobject%20Object%5D&name=image.png&originHeight=249&originWidth=1509&originalType=binary&ratio=1&rotation=0&showTitle=false&size=31410&status=done&style=none&taskId=u3abd9b65-f059-4c1c-b8bf-8272d5bdac4&title=&width=1006)
+```vue
+<template>
+  ```
+  ```
+</template>
+
+<script setup>
+/**
+ * 去掉eslint 警告
+ * 
+ * defineProps，defineEmits 可以直接使用
+ */
+// import { ref, defineProps, defineEmits } from 'vue' 
+/**
+ * 定义Props接受属性
+ */
+const props = defineProps({
+  num: Number,// 设置类型
+  title: String,
+  artice: Object,
+})
+
+/**
+ * 子组件向父组件传参(设置自定义事件)
+ */
+const emit = defineEmits(['finishRead', 'reading'])
+function sendRead() {
+  emit('finishRead', '[已经阅读]');
+}
+</script>
+<style lang='less' scoped>
+</style>
 ```
