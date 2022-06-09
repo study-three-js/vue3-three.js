@@ -298,3 +298,133 @@ function sendRead() {
 <style lang='less' scoped>
 </style>
 ```
+
+## Vue3路由
+<a name="APbRo"></a>
+### 安装路由
+```shell
+npm install vue-router@4
+```
+<a name="DjTBx"></a>
+### 创建router文件夹里面新建index.js
+```javascript
+// 1.导入路由
+/**
+ * 创建路由方法 createRouter
+ * 
+ * 创建不同的历史模式 createWebHashHistory，createWebHistory 用其一即可
+ * Hash 模式 createWebHashHistory 在内部传递的实际 URL 之前使用了一个哈希字符（#）
+ * HTML5 模式 createWebHistory 创建 HTML5 模式
+ */
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
+
+// 2.配置页面
+/**
+ * 不写后缀需要vite.config.js里面配置
+ */
+import Home from '../views/Home.vue'
+import About from '../views/About.vue'
+import Buycart from '../views/Buycart.vue'
+
+// 3.定义路由
+/**
+ * 每个路由都需要映射到一个页面/组件
+ * 
+ * 嵌套路由稍后补充
+ */
+const routes = [
+  // { path: '/', components: Home, name: 'home', },
+  { path: '', component: Home, name: 'home', },
+  { path: '/about', component: About, name: 'about', },
+  { path: '/buycart', component: Buycart, name: 'buycart', },
+]
+
+
+// 4.创建路由实例并传递 'router' 配置（先简单配置一下）
+const router = createRouter({
+  // 5.内部默认提供了history 模式的实现。为了简单起见，暂时这里用 hash模式
+  history: createWebHashHistory(),
+  routes, // router:router 的 es6缩写
+})
+
+export default router
+```
+
+#### 不同的历史模式
+
+##### Hash 模式
+> URL中带有"#"号。
+> 例：[http://localhost:8080/#/login](http://localhost:8080/#/login)
+> 
+> hash模式的特点
+> 
+> hash模式下，前端路由修改的是#号中的信息，对后端完全没有影响，因此改变hash也不会重新加载整个页面。如果修改不存在的#abc页面，页面也不会跳转，history模式则刚好相反，没有对应的页面就会出现404。
+
+<a name="F7MAf"></a>
+##### history模式
+> URL中没有"#"号。
+> 例:[http://localhost:8080/login](http://localhost:8080/login)
+> 
+> history模式的特点
+> 
+> history模式下，操作中不怕前进和后退，不带#号。它的缺点是害怕刷新页面，如果没有服务器端的支持，刷新之后就会请求服务器，由于找不到相应的支持响应或者资源，就会报错404页面。
+
+<a name="WqLdF"></a>
+#### 浏览器报错 ---Vue Router4特有的
+> vue-router.esm-bundler.js:3308 Error: Invalid route component
+
+**如果在配置路由当中的path有为空的把斜杠‘/’去掉，换成空字符**
+<a name="KGF2c"></a>
+### 在main.js中去引入router下的文件
+```javascript
+import { createApp } from 'vue'
+import App from './App.vue'
+
+// 6.导入路由
+import router from './router'
+
+// createApp(App).mount('#app')
+//拆开写
+let app = createApp(App)
+// app.mount('#app')
+// 7. 使用路由
+app.use(router)
+app.mount('#app')
+```
+<a name="Fg2XY"></a>
+### 在App.vue中去使用路由
+> 需要配合 `router-link` 和 `router-view`组件 
+> 
+> 和Vue2一致
+
+```vue
+<template>
+  <div>
+    <router-link to="/">跳转至首页</router-link>
+    <router-link to="/about">跳转至about</router-link>
+    <button @click="router.push('/')">跳转至首页</button>
+    <button @click="goAbout">跳转到about</button>
+  </div>
+  <!-- 跟 Vue2 一样根据不同路径显示的不同的界面 -->
+  <router-view></router-view>
+</template>
+
+<script setup>
+import { useRoute, useRouter } from 'vue-router';
+
+// 8.获取路由信息
+let route = useRoute();
+// 9.执行路由跳转
+let router = useRouter();
+function goAbout() {
+  console.log(route, '====router');
+  router.push("/about")
+}
+</script>
+
+<style>
+...
+...
+</style>
+
+```

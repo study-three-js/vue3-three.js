@@ -1,14 +1,25 @@
 <template>
-  <h1>{{ msg }}</h1>
+  <div>
+    <router-link to="/">跳转至首页</router-link>
+    <router-link to="/about">跳转至about</router-link>
+    <button @click="router.push('/')">跳转至首页</button>
+    <button @click="goAbout">跳转到about</button>
+  </div>
+  <!-- 跟 Vue2 一样根据不同路径显示的不同的界面 -->
+  <router-view></router-view>
 </template>
 
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import ListItemVue from './components/ListItem.vue';
-import { ref, reactive, computed, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router';
 
-let msg = ref('2022/5/6'); //创建响应式数据
+// 8.获取路由信息
+let route = useRoute();
+// 9.执行路由跳转
+let router = useRouter();
+function goAbout() {
+  console.log(route, '====router');
+  router.push("/about")
+}
 </script>
 
 <style>
