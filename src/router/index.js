@@ -29,9 +29,19 @@ const routes = [
    * 
    * 解决方法：如果在配置路由当中的path有为空的把斜杠'/'去掉，换成空字符
    */
-  { path: '', component: Home, name: 'home', },
-  { path: '/about', component: About, name: 'about', },
-  { path: '/buycart', component: Buycart, name: 'buycart', },
+  // { path: '', component: Home, name: 'home', },
+  // { path: '/about', component: About, name: 'about', },
+  // { path: '/buycart', component: Buycart, name: 'buycart', },
+  // // 后面配置跟参数 :id,表示id为多少，跟Vue一致
+  // // { path: '/product/:id', component: () => import('../views/Product'), name: 'product', },
+
+  /**
+   * 路由懒加载
+   */
+  { path: '', component: () => import('../views/Home'), name: 'home', },
+  { path: '/about', component: () => import('../views/About'), name: 'about', },
+  { path: '/buycart', component: () => import('../views/Buycart'), name: 'buycart', },
+  { path: '/product/:id', component: () => import('../views/Product'), name: 'product', },
 ]
 
 
