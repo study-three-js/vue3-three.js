@@ -419,7 +419,7 @@ function goAbout() {
 </style>
 
 ```
-## Vue 3 状态管理
+## Vue 3 Vuex 状态管理
 ### 安装 Vuex
 ```shell
 npm install vuex@next --save
