@@ -266,7 +266,7 @@ function changeTitle(index, $event) {
 </script>
 ```
 #### 去掉Eslint 警告
-![image.png]("C:\Users\L\Downloads\image.png")
+![image.png]("https://github.com/lyxlwz/vue3-three.js/blob/main/image.png?raw=true")
 
 ```vue
 <template>
@@ -305,7 +305,7 @@ function sendRead() {
 ## Vue 3路由
 ### 安装路由
 ```shell
-npm install vue-router@4
+$ npm install vue-router@4
 ```
 ### 创建router文件夹里面新建index.js
 ```javascript
@@ -428,7 +428,7 @@ function goAbout() {
 ## Vue 3 Vuex 状态管理
 ### 安装 Vuex
 ```shell
-npm install vuex@next --save
+$ npm install vuex@next --save
 ```
 ### 创建store文件夹里面新建index.js
 ```javascript
