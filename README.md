@@ -9,6 +9,12 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 - [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
 
+### 相关项目地址
+## Github
+https://github.com/lyxlwz/Vue3hoppingMall
+## Gitee
+https://gitee.com/alicloud_75/Vue3hoppingMall
+
 ## 使用Vite创建项目
 
 ```sh
