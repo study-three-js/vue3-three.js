@@ -266,7 +266,7 @@ function changeTitle(index, $event) {
 </script>
 ```
 #### 去掉Eslint 警告
-![image.png]("https://github.com/lyxlwz/vue3-three.js/blob/main/image.png?raw=true")
+![image.png]("README_files/1.png")
 
 ```vue
 <template>
